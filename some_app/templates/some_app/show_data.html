@@ -4,18 +4,18 @@
 <link rel="stylesheet" href="{% static './some_app/show_data.css' %}" />
 {%if all_users %}
 <div class="container">
-  <ul>
+  <ul class="ul-container">
     {% for instance in all_users %}
     
     <div class="account-container">
-      <div class="data">
-        <div class="data-info">
+      <div class="account-container-data">
+        <div class="account-container-data__info">
           <p>Username:</p>
           <p>Email:</p>
           <p>First name:</p>
           <p>Last name:</p>
         </div>
-        <div class="registrant-info">
+        <div class="account-container-data__info">
           <li><a>{{instance.username}}</a></li>
           <li><a>{{instance.email}}</a></li>
           <li><a>{{instance.first_name}}</a></li>
@@ -27,7 +27,14 @@
         {% csrf_token %}
         <label class="hidden" for="id_to_delete"></label>
         <input class="hidden" value={{instance.id}} type="text" name="id_to_delete">
-        <input type="submit" id="button" value="Delete record" />
+        <input type="submit" class="account-container__button" value="Delete record" />
+      </form>
+      {% else %}
+      <form action="" method="POST">
+        {% csrf_token %}
+        <label class="hidden" for="id_to_delete"></label>
+        <input class="hidden" value={{None}} type="text" name="id_to_delete">
+        <input type="submit" class="account-container__button__dis" value="Disabled" />
       </form>
       {% endif %}
     </div>

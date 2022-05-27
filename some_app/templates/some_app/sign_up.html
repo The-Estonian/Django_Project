@@ -3,7 +3,7 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static './some_app/sign_up.css' %}">
-    <div class="login-container">
+    <div class="signup-container">
         <form action="" class="form" method="post">
             {% csrf_token %}
             <label class="box__name" for="username">Username</label>
@@ -21,7 +21,7 @@
             <label class="box__name" for="last_name">Last name</label>
             <input class="box" type="text" autocomplete="off" id="last_name" name="last_name">
 
-            <input class="box__submit" id=register type="submit" value="Register">
+            <input class="box__submit" id=register type="submit" value="Sign Up!">
         </form>
     </div>
 {% endblock %}

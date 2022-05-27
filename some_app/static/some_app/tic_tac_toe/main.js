@@ -46,21 +46,27 @@ const rotate = (event, player) => {
   if (player == playerX) {
     event.style.transition = '3s';
     event.style.transform = 'rotate(180deg)';
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].style.pointerEvents = "none";
+    }
     playerXWin.style.visibility = 'visible';
     playerXWin.style.opacity = '1';
     playerXWin.style.left = '1%';
     playerXWin.style.top = '75%';
     playerXWin.style.transform = 'rotate(0deg)';
-    playerXWin.style.fontSize = '7rem';
+    playerXWin.style.fontSize = '6rem';
   } else if ((player = playerO)) {
     event.style.transition = '1s';
     event.style.opacity = '0.3';
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].style.pointerEvents = "none";
+    }
     playerOWin.style.visibility = 'visible';
     playerOWin.style.opacity = '1';
     playerOWin.style.left = '1%';
     playerOWin.style.top = '75%';
     playerOWin.style.transform = 'rotate(0deg)';
-    playerOWin.style.fontSize = '7rem';
+    playerOWin.style.fontSize = '6rem';
     event.addEventListener('transitionend', () => {
       event.style.opacity = '1';
     });
