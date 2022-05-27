@@ -47,7 +47,8 @@ def login_page(request):
             login(request, user)
             return render(request, "some_app/index.html")
         else:
-            return render(request, "some_app/login_page.html")
+            context = {"password":"Password incorrect!"}
+            return render(request, "some_app/login_page.html", context)
     else:
         return render(request, "some_app/login_page.html")
 
