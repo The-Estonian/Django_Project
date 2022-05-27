@@ -1,0 +1,41 @@
+{% extends "some_app/base_template.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static './some_app/show_data.css' %}" />
+{%if all_users %}
+<div class="container">
+  <ul>
+    {% for instance in all_users %}
+    
+    <div class="account-container">
+      <div class="data">
+        <div class="data-info">
+          <p>Username:</p>
+          <p>Email:</p>
+          <p>First name:</p>
+          <p>Last name:</p>
+        </div>
+        <div class="registrant-info">
+          <li><a>{{instance.username}}</a></li>
+          <li><a>{{instance.email}}</a></li>
+          <li><a>{{instance.first_name}}</a></li>
+          <li><a>{{instance.last_name}}</a></li>
+        </div>
+      </div>
+      {%if instance.id != 1 %}
+      <form action="" method="POST">
+        {% csrf_token %}
+        <label class="hidden" for="id_to_delete"></label>
+        <input class="hidden" value={{instance.id}} type="text" name="id_to_delete">
+        <input type="submit" id="button" value="Delete record" />
+      </form>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No data</p>
+  {% endif %}
+</div>
+{% endblock %}
+

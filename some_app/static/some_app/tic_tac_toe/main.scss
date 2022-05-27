@@ -1,0 +1,184 @@
+$grid-box: 750px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+// html {
+//   height: 100%;
+//   body {
+//     height: 100%;
+//   }
+// }
+
+// .img-container {
+//   background: url('./images/ivan-bandura-aeuAn9A6rvY-unsplash.jpg');
+//   background-size: cover;
+//   height: 100%;
+//   display: flex;
+//   flex: {
+//     direction: column;
+//   }
+//   justify-content: space-around;
+//   align-items: center;
+//   h1 {
+//     color: rgba(red, 1);
+//     z-index: 1;
+//     margin: 3rem;
+//   }
+//   &__2 {
+//     background: url('./images/valentina-conde-halHth0Y2-w-unsplash.jpg');
+//     background-size: cover;
+//     height: 100%;
+//     width: 100%;
+//     opacity: 30%;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//   }
+// }
+
+.menu-gamegrid {
+  z-index: 1;
+  display: flex;
+  flex: {
+    direction: row;
+  }
+  justify-content: space-between;
+  align-items: center;
+
+  &--menu {
+    display: flex;
+    flex: {
+      direction: column;
+    }
+    margin: 5rem;
+    width: 12rem;
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px 10px rgba(#000, 1);
+    span {
+      background: linear-gradient(25deg, rgba(white, 0.3), rgba(blue, 0.7));
+      text-align: center;
+      color: white;
+      font-size: 1.3rem;
+      margin: 0.3rem;
+      padding: 0.7rem;
+      border-radius: 0.5rem;
+      box-shadow: 2px 2px 10px rgba(#000, 1);
+      border: 1px solid transparent;
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      &:hover {
+        background: rgba(black, 0.5);
+        cursor: pointer;
+        transition: 1s;
+        border: 1px solid red;
+      }
+    }
+  }
+  &--grid {
+    color: black;
+    height: $grid-box;
+    width: $grid-box;
+    border-radius: 1rem;
+    overflow: hidden;
+    &__column {
+      display: flex;
+      flex: {
+        direction: column;
+      }
+      justify-content: center;
+      align-items: center;
+    }
+    &__row {
+      display: flex;
+      flex: {
+        direction: row;
+      }
+      justify-content: space-between;
+      align-items: center;
+      span {
+        font-size: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: $grid-box / 3.2;
+        height: $grid-box / 3.2;
+        box-shadow: 2px 2px 10px rgba(#000, 1);
+        // background: linear-gradient(47deg, rgba(#0000ff, 0.7), rgba(#ffd4d4, 0.8), rgba(#008000, 0.7));
+        background: radial-gradient(circle, rgba(#0000ff, 0.4) 0%, rgba(#008000, 0.3) 60%, rgba(#ffd4d4, 0.8) 100%);
+        margin: 4px;
+        border-radius: 2rem;
+        overflow: hidden;
+        &:hover{
+          cursor: pointer;
+        }
+        p {
+          opacity: 0%;
+          visibility: hidden;
+          background: linear-gradient(
+            173deg,
+            rgba(blue, 0.8),
+            green,
+            rgba(black, 0.2)
+          );
+          -webkit-background-clip: text;
+          color: transparent;
+          transform: rotate(315deg);
+        }
+      }
+    }
+  }
+}
+
+.doughnut {
+  position: absolute;
+  top: -100%;
+  left: -100%;
+}
+
+.playerX {
+  visibility: hidden;
+  opacity: 0;
+  color: black;
+  font-size: 3rem;
+  transform: rotate(100deg);
+  position: absolute;
+  z-index: 2;
+  top: 39%;
+  left: 39%;
+  border: 0.5rem solid rgba(black, 1);
+  border-radius: 2rem;
+  padding: 1rem;
+  background: linear-gradient(
+    37deg,
+    rgba(blue, 0.5),
+    rgba(green, 0.5),
+    rgba(white, 0.5)
+  );
+  transition: 2s;
+}
+
+.playerO {
+  visibility: hidden;
+  opacity: 0;
+  color: black;
+  font-size: 3rem;
+  transform: rotate(100deg);
+  position: absolute;
+  z-index: 2;
+  top: 39%;
+  left: 39%;
+  border: 0.5rem solid rgba(black, 1);
+  border-radius: 2rem;
+  padding: 1rem;
+  background: linear-gradient(
+    37deg,
+    rgba(blue, 0.5),
+    rgba(green, 0.5),
+    rgba(white, 0.5)
+  );
+  transition: 2s;
+}

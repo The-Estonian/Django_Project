@@ -1,0 +1,27 @@
+{% extends "some_app/base_template.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static './some_app/sign_up.css' %}">
+    <div class="login-container">
+        <form action="" class="form" method="post">
+            {% csrf_token %}
+            <label class="box__name" for="username">Username</label>
+            <input class="box" type="text" autocomplete="off" id="username" name="username">
+
+            <label  class="box__name" for="password">Password</label>
+            <input class="box" type="password" autocomplete="off" id="password" name="password">
+
+            <label  class="box__name" for="email">Email</label>
+            <input class="box" type="email" autocomplete="off" id="email" name="email">
+
+            <label  class="box__name" for="first_name">First name</label>
+            <input class="box" type="text" autocomplete="off" id="first_name" name="first_name">
+
+            <label class="box__name" for="last_name">Last name</label>
+            <input class="box" type="text" autocomplete="off" id="last_name" name="last_name">
+
+            <input class="box__submit" id=register type="submit" value="Register">
+        </form>
+    </div>
+{% endblock %}

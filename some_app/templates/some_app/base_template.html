@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static './some_app/main.css' %}">
+    {% block link %}{% endblock %}
+    <title>Front page</title>
+  </head>
+  <body>
+    <div class="container">
+    <div class="menu">
+      <a class="menu--button" href="/"><span>Main</span></a>
+      <a class="menu--button" href="{% url 'tic_tac_toe' %}"><span>Tic Tac Toe</span></a>
+      <a class="menu--button" href="{% url 'To-Do-List' %}"><span>To-Do</span></a>
+      <a class="menu--button" href="{% url 'sign_up' %}"><span>Sign up</span></a>
+      <a class="menu--button" href="{% url 'show_data' %}"><span>Show users</span></a>
+      <a class="menu--button" href="{% url 'login_page' %}"><span>Login</span></a>
+      {% if user.is_authenticated %}
+      <div class="right-corner">
+        <span>{{user.username}}</span>
+        <span><a href="{% url 'log_out' %}"><img src="{% static 'some_app/images/log_out.png' %}" alt="log out"></a></span>
+        </div>
+      {% else %}
+      <div class="right-corner">
+        <span>Guest</span>
+        <span><a href="{% url 'log_out' %}"><img src="{% static 'some_app/images/log_out.png' %}" alt="log out"></a></span>
+      </div>
+      {% endif %}
+
+    </div>
+    {% block content %}
+    {% endblock %}
+    </div>
+  <script type="text/javascript" src="{% static './some_app/tic_tac_toe/main.js' %}"></script>
+  </body>
+</html>
+
+<!-- <img src="{% static 'some_app/images/log_out.png' %}" alt="log out"> -->
