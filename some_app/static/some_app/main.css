@@ -272,6 +272,8 @@ html body {
 
 .password-incorrect {
   color: white;
+  position: absolute;
+  top: 70%;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -289,26 +291,31 @@ html body {
 
 @-webkit-keyframes wrong_password {
   0% {
+    opacity: 0.5;
     color: #04486a;
     -webkit-transform: rotate(3deg);
             transform: rotate(3deg);
   }
   25% {
+    opacity: 1;
     color: white;
     -webkit-transform: rotate(-3deg);
             transform: rotate(-3deg);
   }
   50% {
+    opacity: 0.5;
     color: #04486a;
     -webkit-transform: rotate(3deg);
             transform: rotate(3deg);
   }
   75% {
+    opacity: 1;
     color: white;
     -webkit-transform: rotate(-3deg);
             transform: rotate(-3deg);
   }
   100% {
+    opacity: 0.5;
     color: #04486a;
     -webkit-transform: rotate(3deg);
             transform: rotate(3deg);
@@ -317,26 +324,31 @@ html body {
 
 @keyframes wrong_password {
   0% {
+    opacity: 0.5;
     color: #04486a;
     -webkit-transform: rotate(3deg);
             transform: rotate(3deg);
   }
   25% {
+    opacity: 1;
     color: white;
     -webkit-transform: rotate(-3deg);
             transform: rotate(-3deg);
   }
   50% {
+    opacity: 0.5;
     color: #04486a;
     -webkit-transform: rotate(3deg);
             transform: rotate(3deg);
   }
   75% {
+    opacity: 1;
     color: white;
     -webkit-transform: rotate(-3deg);
             transform: rotate(-3deg);
   }
   100% {
+    opacity: 0.5;
     color: #04486a;
     -webkit-transform: rotate(3deg);
             transform: rotate(3deg);

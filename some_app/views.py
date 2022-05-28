@@ -3,14 +3,17 @@ from random import shuffle
 from django.shortcuts import render
 from .models import ToDoList
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 def base_template(request):
     return render(request, "some_app/base_template.html")
 
+
 def index(request):
     return render(request, "some_app/index.html")
+
 
 def sign_up(request):
     if request.method == "POST":
@@ -52,10 +55,12 @@ def login_page(request):
     else:
         return render(request, "some_app/login_page.html")
 
+
 def log_out(request):
     logout(request)
     return render(request, "some_app/index.html")
 
+@login_required(login_url="login_page")
 def to_do_list(request):
     to_do_user = request.user.id
     to_do_list = ToDoList.objects.filter(user_id=to_do_user).order_by('?')

@@ -54,7 +54,7 @@ html{
 .menu {
     @include flex-row;
     width: 90%;
-    border-radius: 0rem 0rem 0.5rem 0.5rem;
+    border-radius: 0rem 0rem $border-radius $border-radius;
     box-shadow: $box-shadow;
     position: absolute;
     top: 0;
@@ -105,10 +105,10 @@ html{
     }
     span:first-child{
         margin-right: 0;
-        border-radius: 0.5rem 0 0 0.5rem;
+        border-radius: $border-radius 0 0 $border-radius;
     }
     span:last-child{
-        border-radius: 0 0.5rem 0.5rem 0;
+        border-radius: 0 $border-radius $border-radius 0;
         margin-left: 0;
         padding: 0.09rem;
     }
@@ -198,6 +198,8 @@ html{
 
 .password-incorrect{
     color: white;
+    position: absolute;
+    top: 70%;
     width: fit-content;
     background: #04486a;
     box-shadow: $box-shadow;
@@ -209,22 +211,27 @@ html{
     animation: wrong_password 10s infinite;
     @keyframes wrong_password {
         0% {
+          opacity: 0.5;
           color: #04486a;
           transform: rotate(3deg);
         }
         25% {
+          opacity: 1;
           color: white;
           transform: rotate(-3deg);
         }
         50% {
+          opacity: 0.5;
           color: #04486a;
           transform: rotate(3deg);
         }
         75% {
+          opacity: 1;
           color: white;
           transform: rotate(-3deg);
         }
         100% {
+          opacity: 0.5;
           color: #04486a;
           transform: rotate(3deg);
         }
