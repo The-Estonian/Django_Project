@@ -4,7 +4,16 @@
     <div class="todo-container">
     {% for todo in to_do_list %}
     <div class="todo-button">
-        <span class="todo-container__item"><p class="todo-container__id">{{ todo.id }}</p> {{ todo.to_do_message }}</span>
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="{{todo.id}}">
+            <input class="todo__checkbox" type="checkbox" id={{todo.id}} value={{todo.done_or_not}} onchange="checkBox(this)">
+            <span></span>
+            </label>
+        </form>
+
+        
+        <span class="todo-container__item">{{ todo.to_do_message }}</span>
         <span class="todo-container__delete">
             <form action="" method="post">
             {% csrf_token %}
@@ -15,9 +24,5 @@
     </div>
     {% endfor %}
     </div>
-    <!-- <div>
-        <label class="add-todo__button" for="add-todo"><span class="add-todo">+</span></label>
-        <input type="checkbox" name="add-todo" id="add-todo">        
-    </div> -->
-    
+    <script type="text/javascript" src="{% static './some_app/to_do_list.js' %}"></script>
     {% endblock %}

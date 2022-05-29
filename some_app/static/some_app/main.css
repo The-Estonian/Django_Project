@@ -167,58 +167,41 @@ html body {
 }
 
 .todo-container {
+  margin-top: 3rem;
   display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -ms-grid-rows: (auto)[8];
-      grid-template-rows: repeat(8, auto);
-  margin-top: 3rem;
+  -ms-grid-rows: (auto)[6];
+      grid-template-rows: repeat(6, auto);
 }
 
 .todo-container__item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 5rem;
+  width: 20rem;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 1rem;
-  padding-left: 0.5rem;
-  margin: 0.5rem;
-  margin-right: 0;
   border-radius: 0.5rem;
   -webkit-box-shadow: 2px 2px 10px black;
           box-shadow: 2px 2px 10px black;
   background: #04486a;
   opacity: 80%;
   color: white;
-}
-
-.todo-container__id {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 0.6rem;
-  border: 2px solid red;
-  border-radius: 50%;
-  width: 2.5rem;
-  height: 2.5rem;
-  color: white;
+  margin: 0.25rem;
+  padding: 0.5rem;
 }
 
 .todo-container__delete {
   border-radius: 50%;
   padding: 1rem;
-  margin: 0.5rem;
   -webkit-box-shadow: 2px 2px 10px black;
           box-shadow: 2px 2px 10px black;
   background: #04486a;
@@ -250,18 +233,137 @@ html body {
 }
 
 .todo-button {
+  margin: 0.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+}
+
+.todo-button form {
+  margin-bottom: 1rem;
+}
+
+.todo-button label span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: url("/static/some_app/images/x.png");
+  background-size: cover;
+  border: 5px solid black;
+  border-radius: 50%;
+  -webkit-box-shadow: 2px 2px 10px black;
+          box-shadow: 2px 2px 10px black;
+  height: 5rem;
+  width: 5rem;
+  -webkit-animation: k_to_x 2s forwards;
+          animation: k_to_x 2s forwards;
+}
+
+.todo-button label input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.todo-button label input[type="checkbox"]:checked ~ span {
+  background: url("/static/some_app/images/k.png");
+  background-size: cover;
+  border: 5px solid white;
+  border-radius: 50%;
+  -webkit-box-shadow: 2px 2px 10px black;
+          box-shadow: 2px 2px 10px black;
+  height: 5rem;
+  width: 5rem;
+  -webkit-animation: x_to_k 2s forwards;
+          animation: x_to_k 2s forwards;
+}
+
+@-webkit-keyframes k_to_x {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    background: url("/static/some_app/images/k.png");
+  }
+  50% {
+    background: url("/static/some_app/images/x.png");
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes k_to_x {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    background: url("/static/some_app/images/k.png");
+  }
+  50% {
+    background: url("/static/some_app/images/x.png");
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes x_to_k {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    background: url("/static/some_app/images/x.png");
+  }
+  50% {
+    background: url("/static/some_app/images/k.png");
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes x_to_k {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    background: url("/static/some_app/images/x.png");
+  }
+  50% {
+    background: url("/static/some_app/images/k.png");
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 
 .hidden {

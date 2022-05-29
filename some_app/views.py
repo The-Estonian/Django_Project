@@ -1,6 +1,4 @@
-from random import shuffle
-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import ToDoList
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -48,9 +46,12 @@ def login_page(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return render(request, "some_app/index.html")
+            if "next" in request.GET.dict():
+                return redirect(request.GET.dict()["next"])
+            else:
+                return render(request, "some_app/login_page.html")
         else:
-            context = {"password":"Password incorrect!"}
+            context = {"password":"Username or Password incorrect! "}
             return render(request, "some_app/login_page.html", context)
     else:
         return render(request, "some_app/login_page.html")
@@ -66,6 +67,7 @@ def to_do_list(request):
     to_do_list = ToDoList.objects.filter(user_id=to_do_user).order_by('?')
     context = {"to_do_list" : to_do_list}
     if request.method == "POST":
+        print(request.POST.dict())
         id_to_delete = request.POST.dict()["id_to_delete"]
         ToDoList.objects.filter(id=id_to_delete).delete()
         return render(request, "some_app/to_do_list.html", context)

@@ -12,11 +12,12 @@
         <label  class="box__name" for="password">Password</label>
         <input class="box" type="password" autocomplete="off" id="password" name="password">
         
+        <input type="hidden" name="next"/>
         <input class="box__submit" id=register type="submit" value="Login">
     </form>
     {% if password %}
     <div class="password-incorrect">
-        Username or Password incorrect!
+        {{ password }}
     </div>
     {% endif %}
     </div>

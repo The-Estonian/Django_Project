@@ -43,6 +43,16 @@ from django.contrib.auth.models import User
 #     class Meta:
 #         unique_together = (("grid_choice1", "grid_choice2"),)
 
+class DoneOrNot(Model):
+    done_or_not = CharField(max_length=50)
+
+    def __str__(self):
+        return self.done_or_not
+
 class ToDoList(Model):
     user_id = ForeignKey(User, on_delete=RESTRICT)
-    to_do_message = CharField(max_length=50)
+    to_do_message = CharField(max_length=100)
+    done_or_not = ForeignKey(DoneOrNot, on_delete=RESTRICT, default=2)
+
+    def __str__(self):
+        return self.to_do_message[:30]
