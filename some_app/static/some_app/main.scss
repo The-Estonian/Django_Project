@@ -182,60 +182,10 @@ html{
     z-index: 2;
     margin: 1rem;
     @include flex-row;
-    input[type="checkbox"]{
+    input[type="submit"]{
       display: none
     }
-    .pop-button {
-      @include flex-row;
-      background: url("/static/some_app/images/x.png");
-      background-size: cover;
-      border: 5px solid black;
-      border-radius: 50%;
-      box-shadow: $box-shadow;
-      height: 5rem;
-      width: 5rem;
-      position: relative;
-      left: 2.5rem;
-      z-index: 2;
-      animation: pop_yes_to_no 2s forwards;
-    }
-    label input[type="checkbox"]:checked ~ .pop-button{
-      background: url("/static/some_app/images/k.png");
-      background-size: cover;
-      border: 5px solid rgb(255, 255, 255);
-      border-radius: 50%;
-      box-shadow: $box-shadow;
-      height: 5rem;
-      width: 5rem;
-      animation: pop_no_to_yes 2s forwards;
-      }
-      @keyframes pop_yes_to_no {
-        0% {
-          transform: scale(1);
-          background: url("/static/some_app/images/k.png");
-        }
-        50%{
-          background: url("/static/some_app/images/x.png");
-          transform: scale(0);
-        }
-        100%{
-          transform: scale(1);
-        }
-      }
-      @keyframes pop_no_to_yes {
-        0% {
-          transform: scale(1);
-          background: url("/static/some_app/images/x.png");
-        }
-        50%{
-          background: url("/static/some_app/images/k.png");
-          transform: scale(0);
-        }
-        100%{
-          transform: scale(1);
-        }
-      }
-      .move-button {
+    .move-button {
         background: url("/static/some_app/images/x.png");
         background-size: cover;
         display: block;
@@ -247,64 +197,66 @@ html{
         width: 5rem;
         z-index: 2;
         position: relative;
-        animation: move_yes_to_no 2s forwards;
       }
       label input[type="checkbox"]:checked ~ .move-button{
         border: 5px solid rgb(255, 255, 255);
-        animation: move_no_to_yes 2s forwards;
-        }
-      @keyframes move_no_to_yes {
-        0%{
-            left: 2.5rem;
-            background: url("/static/some_app/images/x.png");
-            background-size: cover;
-        }
-        40%{
-            left: -1rem;
-            background: url("/static/some_app/images/x.png");
-            background-size: cover;
-        }
+        background: url("/static/some_app/images/k.png");
+        background-size: cover;
+      }
+    //   animation: move_no_to_yes 2s forwards;
+    //   animation: move_yes_to_no 2s forwards;
+    //   @keyframes move_no_to_yes {
+    //     0%{
+    //         left: 2.5rem;
+    //         background: url("/static/some_app/images/x.png");
+    //         background-size: cover;
+    //     }
+    //     40%{
+    //         left: -1rem;
+    //         background: url("/static/some_app/images/x.png");
+    //         background-size: cover;
+    //     }
         
-        60%{
-          z-index: 1;
-          background: url("/static/some_app/images/k.png");
-          background-size: cover;
-          left: 25.5rem;
-        }
-        61%{
-          z-index: 2;
-        }
-        100%{
-            background: url("/static/some_app/images/k.png");
-            background-size: cover;
-        }
-    }
+    //     60%{
+    //       z-index: 1;
+    //       background: url("/static/some_app/images/k.png");
+    //       background-size: cover;
+    //       left: 25.5rem;
+    //     }
+    //     61%{
+    //       z-index: 2;
+    //     }
+    //     100%{
+    //         background: url("/static/some_app/images/k.png");
+    //         background-size: cover;
+    //     }
+    // }
 
-    @keyframes move_yes_to_no {
-        0%{
-            left: 2.5rem;
-            background: url("/static/some_app/images/k.png");
-            background-size: cover;
-        }
-        40%{
-            left: -1rem;
-            background: url("/static/some_app/images/k.png");
-            background-size: cover;
-        }
-        60%{
-            z-index: 1;
-            background: url("/static/some_app/images/x.png");
-            background-size: cover;
-            left: 25.5rem;
-        }
-        61%{
-          z-index: 2;
-        }
-        100%{
-            background: url("/static/some_app/images/x.png");
-            background-size: cover;
-        }
-    }
+    // @keyframes move_yes_to_no {
+    //     0%{
+    //         left: 2.5rem;
+    //         background: url("/static/some_app/images/k.png");
+    //         background-size: cover;
+    //     }
+    //     40%{
+    //         left: -1rem;
+    //         background: url("/static/some_app/images/k.png");
+    //         background-size: cover;
+    //     }
+    //     60%{
+    //         z-index: 1;
+    //         background: url("/static/some_app/images/x.png");
+    //         background-size: cover;
+    //         left: 25.5rem;
+    //     }
+    //     61%{
+    //       z-index: 2;
+    //     }
+    //     100%{
+    //         background: url("/static/some_app/images/x.png");
+    //         background-size: cover;
+    //     }
+    // }
   }
   
 

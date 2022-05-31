@@ -4,11 +4,11 @@
     <div class="todo-container">
     {% for todo in to_do_list %}
     <div class="todo-button">
-            <form id="todoForm" action="" method="post">
+            <form id="todoForm" action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <label for={{todo.id}}>
-            <input class="todo__checkbox" type="checkbox" id={{todo.id}} name="done_or_not" value="{{todo.id}}">
-            <span class="move-button anime-start"></span>
+            <input class="todo__checkbox" type="submit" id={{todo.id}} name="done_or_not" value="{{todo.id}} {{todo.done_or_not}}">
+            <span class="move-button"></span>
             </label>
             </form>
         

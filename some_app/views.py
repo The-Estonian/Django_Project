@@ -67,7 +67,7 @@ def to_do_list(request):
     to_do_list = ToDoList.objects.filter(user_id=to_do_user)
     context = {"to_do_list" : to_do_list}
     if request.method == "POST":
-        print(request.POST.dict())
+        # print(request.body)
         if "id_to_delete" in request.POST.dict():
             id_to_delete = request.POST.dict()["id_to_delete"]
             ToDoList.objects.filter(id=id_to_delete).delete()
