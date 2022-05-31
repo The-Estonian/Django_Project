@@ -1,7 +1,5 @@
 console.log("To Do List is Connected");
 
-
-const checkBox = (element) => {
-    element.style.color = "black"
-}
-
+setTimeout(function(){
+    document.body.className="";
+},2000);

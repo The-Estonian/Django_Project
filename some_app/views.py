@@ -64,17 +64,24 @@ def log_out(request):
 @login_required(login_url="login_page")
 def to_do_list(request):
     to_do_user = request.user.id
-    to_do_list = ToDoList.objects.filter(user_id=to_do_user).order_by('?')
+    to_do_list = ToDoList.objects.filter(user_id=to_do_user)
     context = {"to_do_list" : to_do_list}
     if request.method == "POST":
         print(request.POST.dict())
-        id_to_delete = request.POST.dict()["id_to_delete"]
-        ToDoList.objects.filter(id=id_to_delete).delete()
-        return render(request, "some_app/to_do_list.html", context)
+        if "id_to_delete" in request.POST.dict():
+            id_to_delete = request.POST.dict()["id_to_delete"]
+            ToDoList.objects.filter(id=id_to_delete).delete()
+            return render(request, "some_app/to_do_list.html", context)
+        elif "done_or_not" in request.POST.dict():
+            datastream = request.POST.dict()["done_or_not"]
+            print(datastream)
+            return render(request, "some_app/to_do_list.html", context)
+        else:
+            return render(request, "some_app/to_do_list.html", context)
     else:
         return render(request, "some_app/to_do_list.html", context)
 
-
+# 'done_or_not': '22, False'}
 
     # def login_page(request):
     #     if request.method == "POST":

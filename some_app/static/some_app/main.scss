@@ -20,6 +20,11 @@ $font: 1.3rem;
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600&display=swap');
 
+body.preload *{
+  animation-duration: 0s !important;
+  -webkit-animation-duration: 0s !important;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -132,6 +137,8 @@ html{
     grid-template-rows: repeat(6, auto);
     &__item{
         display: flex;
+        position: relative;
+        z-index: 1;
         height: 5rem;
         width: 20rem;
         flex-wrap: wrap;
@@ -140,10 +147,9 @@ html{
         border-radius: $border-radius;
         box-shadow: $box-shadow;
         background: #04486a;
-        opacity: 80%;
         color: white;
         margin: 0.25rem;
-        padding: 0.5rem;
+        padding: 0.25rem 2.5rem;
       }
     &__delete{
         border-radius: 50%;
@@ -172,12 +178,14 @@ html{
   }
 
 .todo-button{
-    margin: 0.5rem;
-    form{
-      margin-bottom: 1rem
-    }
+    position: relative;
+    z-index: 2;
+    margin: 1rem;
     @include flex-row;
-    label span {
+    input[type="checkbox"]{
+      display: none
+    }
+    .pop-button {
       @include flex-row;
       background: url("/static/some_app/images/x.png");
       background-size: cover;
@@ -186,12 +194,12 @@ html{
       box-shadow: $box-shadow;
       height: 5rem;
       width: 5rem;
-      animation: k_to_x 2s forwards;
+      position: relative;
+      left: 2.5rem;
+      z-index: 2;
+      animation: pop_yes_to_no 2s forwards;
     }
-    label input{
-      appearance: none;
-    }
-    label input[type="checkbox"]:checked ~ span{
+    label input[type="checkbox"]:checked ~ .pop-button{
       background: url("/static/some_app/images/k.png");
       background-size: cover;
       border: 5px solid rgb(255, 255, 255);
@@ -199,9 +207,9 @@ html{
       box-shadow: $box-shadow;
       height: 5rem;
       width: 5rem;
-      animation: x_to_k 2s forwards;
+      animation: pop_no_to_yes 2s forwards;
       }
-      @keyframes k_to_x {
+      @keyframes pop_yes_to_no {
         0% {
           transform: scale(1);
           background: url("/static/some_app/images/k.png");
@@ -214,7 +222,7 @@ html{
           transform: scale(1);
         }
       }
-      @keyframes x_to_k {
+      @keyframes pop_no_to_yes {
         0% {
           transform: scale(1);
           background: url("/static/some_app/images/x.png");
@@ -227,6 +235,76 @@ html{
           transform: scale(1);
         }
       }
+      .move-button {
+        background: url("/static/some_app/images/x.png");
+        background-size: cover;
+        display: block;
+        left: 2.5rem;
+        border: 5px solid black;
+        border-radius: 50%;
+        box-shadow: $box-shadow;
+        height: 5rem;
+        width: 5rem;
+        z-index: 2;
+        position: relative;
+        animation: move_yes_to_no 2s forwards;
+      }
+      label input[type="checkbox"]:checked ~ .move-button{
+        border: 5px solid rgb(255, 255, 255);
+        animation: move_no_to_yes 2s forwards;
+        }
+      @keyframes move_no_to_yes {
+        0%{
+            left: 2.5rem;
+            background: url("/static/some_app/images/x.png");
+            background-size: cover;
+        }
+        40%{
+            left: -1rem;
+            background: url("/static/some_app/images/x.png");
+            background-size: cover;
+        }
+        
+        60%{
+          z-index: 1;
+          background: url("/static/some_app/images/k.png");
+          background-size: cover;
+          left: 25.5rem;
+        }
+        61%{
+          z-index: 2;
+        }
+        100%{
+            background: url("/static/some_app/images/k.png");
+            background-size: cover;
+        }
+    }
+
+    @keyframes move_yes_to_no {
+        0%{
+            left: 2.5rem;
+            background: url("/static/some_app/images/k.png");
+            background-size: cover;
+        }
+        40%{
+            left: -1rem;
+            background: url("/static/some_app/images/k.png");
+            background-size: cover;
+        }
+        60%{
+            z-index: 1;
+            background: url("/static/some_app/images/x.png");
+            background-size: cover;
+            left: 25.5rem;
+        }
+        61%{
+          z-index: 2;
+        }
+        100%{
+            background: url("/static/some_app/images/x.png");
+            background-size: cover;
+        }
+    }
   }
   
 

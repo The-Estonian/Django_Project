@@ -4,14 +4,13 @@
     <div class="todo-container">
     {% for todo in to_do_list %}
     <div class="todo-button">
-        <form action="" method="post">
+            <form id="todoForm" action="" method="post">
             {% csrf_token %}
-            <label for="{{todo.id}}">
-            <input class="todo__checkbox" type="checkbox" id={{todo.id}} value={{todo.done_or_not}} onchange="checkBox(this)">
-            <span></span>
+            <label for={{todo.id}}>
+            <input class="todo__checkbox" type="checkbox" id={{todo.id}} name="done_or_not" value="{{todo.id}}">
+            <span class="move-button anime-start"></span>
             </label>
-        </form>
-
+            </form>
         
         <span class="todo-container__item">{{ todo.to_do_message }}</span>
         <span class="todo-container__delete">

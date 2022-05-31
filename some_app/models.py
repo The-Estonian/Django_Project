@@ -51,7 +51,7 @@ class DoneOrNot(Model):
 
 class ToDoList(Model):
     user_id = ForeignKey(User, on_delete=RESTRICT)
-    to_do_message = CharField(max_length=100)
+    to_do_message = CharField(max_length=80)
     done_or_not = ForeignKey(DoneOrNot, on_delete=RESTRICT, default=2)
 
     def __str__(self):
