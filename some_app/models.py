@@ -54,5 +54,5 @@ class ToDoList(Model):
     to_do_message = CharField(max_length=80)
     done_or_not = ForeignKey(DoneOrNot, on_delete=RESTRICT, default=2)
 
-    def __str__(self):
-        return self.to_do_message[:30]
+    # def __str__(self):
+    #     return self.id

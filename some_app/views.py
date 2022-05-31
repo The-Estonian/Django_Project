@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import ToDoList
+from .models import ToDoList, DoneOrNot
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -74,7 +74,19 @@ def to_do_list(request):
             return render(request, "some_app/to_do_list.html", context)
         elif "done_or_not" in request.POST.dict():
             datastream = request.POST.dict()["done_or_not"]
-            print(datastream)
+            task_done = DoneOrNot.objects.get(id=2)
+            task_not_done = DoneOrNot.objects.get(id=1)
+            current_value = ToDoList.objects.get(id=datastream)
+            if current_value.done_or_not == task_done:
+                print("Task Done on ", current_value)
+                ToDoList.objects.filter(id=datastream).update(done_or_not=task_not_done)
+            elif current_value.done_or_not == task_not_done:
+                print("Task not done on ", current_value)
+                ToDoList.objects.filter(id=datastream).update(done_or_not=task_done)
+            # my_queryset = ToDoList.objects.filter(id=int(datastream[0])).update(done_or_not=done_or_not)
+            # for item in my_queryset:
+            #     item.save()
+            
             return render(request, "some_app/to_do_list.html", context)
         else:
             return render(request, "some_app/to_do_list.html", context)

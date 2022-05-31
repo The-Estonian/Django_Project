@@ -7,7 +7,7 @@
             <form id="todoForm" action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <label for={{todo.id}}>
-            <input class="todo__checkbox" type="submit" id={{todo.id}} name="done_or_not" value="{{todo.id}} {{todo.done_or_not}}">
+            <input class="todo__checkbox" type="submit" id={{todo.id}} name="done_or_not" value="{{todo.done_or_not}}">
             <span class="move-button"></span>
             </label>
             </form>
