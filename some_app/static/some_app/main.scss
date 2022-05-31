@@ -186,23 +186,27 @@ html{
       display: none
     }
     .move-button {
+      display: block;
+      left: 2.5rem;
+      border: 5px solid black;
+      border-radius: 50%;
+      box-shadow: $box-shadow;
+      height: 5rem;
+      width: 5rem;
+      z-index: 2;
+      position: relative;
+    }
+    label input[type="submit"]:checked ~ .move-button{
+      border: 5px solid rgb(255, 255, 255);
+    }
+    .task-done{
+      background: url("/static/some_app/images/k.png");
+      background-size: cover;
+      }
+      .task-notDone{
         background: url("/static/some_app/images/x.png");
         background-size: cover;
-        display: block;
-        left: 2.5rem;
-        border: 5px solid black;
-        border-radius: 50%;
-        box-shadow: $box-shadow;
-        height: 5rem;
-        width: 5rem;
-        z-index: 2;
-        position: relative;
-      }
-      label input[type="checkbox"]:checked ~ .move-button{
-        border: 5px solid rgb(255, 255, 255);
-        background: url("/static/some_app/images/k.png");
-        background-size: cover;
-      }
+    }
     //   animation: move_no_to_yes 2s forwards;
     //   animation: move_yes_to_no 2s forwards;
     //   @keyframes move_no_to_yes {

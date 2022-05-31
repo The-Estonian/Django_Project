@@ -262,8 +262,6 @@ html body {
 }
 
 .todo-button .move-button {
-  background: url("/static/some_app/images/x.png");
-  background-size: cover;
   display: block;
   left: 2.5rem;
   border: 5px solid black;
@@ -276,9 +274,17 @@ html body {
   position: relative;
 }
 
-.todo-button label input[type="checkbox"]:checked ~ .move-button {
+.todo-button label input[type="submit"]:checked ~ .move-button {
   border: 5px solid white;
+}
+
+.todo-button .task-done {
   background: url("/static/some_app/images/k.png");
+  background-size: cover;
+}
+
+.todo-button .task-notDone {
+  background: url("/static/some_app/images/x.png");
   background-size: cover;
 }
 

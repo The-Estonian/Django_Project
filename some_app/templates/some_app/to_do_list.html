@@ -8,7 +8,11 @@
             {% csrf_token %}
             <label for={{todo.id}}>
             <input class="todo__checkbox" type="submit" id={{todo.id}} name="done_or_not" value="{{todo.done_or_not}}">
-            <span class="move-button"></span>
+            {% if todo.done_or_not == done_or_not.1 %}
+            <span class="move-button task-done"></span>
+            {% elif todo.done_or_not == done_or_not.0 %}
+            <span class="move-button task-notDone"></span>
+            {% endif %}
             </label>
             </form>
         

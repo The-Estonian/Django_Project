@@ -65,7 +65,8 @@ def log_out(request):
 def to_do_list(request):
     to_do_user = request.user.id
     to_do_list = ToDoList.objects.filter(user_id=to_do_user)
-    context = {"to_do_list" : to_do_list}
+    done_or_not = DoneOrNot.objects.all()
+    context = {"to_do_list" : to_do_list, "done_or_not": done_or_not}
     if request.method == "POST":
         # print(request.body)
         if "id_to_delete" in request.POST.dict():
