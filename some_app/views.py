@@ -66,28 +66,31 @@ def to_do_list(request):
     to_do_user = request.user.id
     to_do_list = ToDoList.objects.filter(user_id=to_do_user)
     done_or_not = DoneOrNot.objects.all()
+    task_done = DoneOrNot.objects.get(id=2)
+    task_not_done = DoneOrNot.objects.get(id=1)
+    user_instance = User.objects.get(id=to_do_user)
     context = {"to_do_list" : to_do_list, "done_or_not": done_or_not}
     if request.method == "POST":
-        # print(request.body)
+        # print(request.POST)
         if "id_to_delete" in request.POST.dict():
             id_to_delete = request.POST.dict()["id_to_delete"]
             ToDoList.objects.filter(id=id_to_delete).delete()
             return render(request, "some_app/to_do_list.html", context)
         elif "done_or_not" in request.POST.dict():
             datastream = request.POST.dict()["done_or_not"]
-            task_done = DoneOrNot.objects.get(id=2)
-            task_not_done = DoneOrNot.objects.get(id=1)
             current_value = ToDoList.objects.get(id=datastream)
             if current_value.done_or_not == task_done:
-                print("Task Done on ", current_value)
                 ToDoList.objects.filter(id=datastream).update(done_or_not=task_not_done)
+                print(f"Task {datastream}, ({current_value.to_do_message}) updated to Not Done!")
             elif current_value.done_or_not == task_not_done:
-                print("Task not done on ", current_value)
                 ToDoList.objects.filter(id=datastream).update(done_or_not=task_done)
-            # my_queryset = ToDoList.objects.filter(id=int(datastream[0])).update(done_or_not=done_or_not)
-            # for item in my_queryset:
-            #     item.save()
-            
+                print(f"Task {datastream}, ({current_value.to_do_message}) updated to Done!")
+            return render(request, "some_app/to_do_list.html", context)
+        elif "add-todo" in request.POST.dict():
+            print(request.POST.dict()["content"])
+            content = request.POST.dict()["content"]
+            db_connection = ToDoList(user_id=user_instance, to_do_message=content, done_or_not=task_not_done)
+            db_connection.save()
             return render(request, "some_app/to_do_list.html", context)
         else:
             return render(request, "some_app/to_do_list.html", context)

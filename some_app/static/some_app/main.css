@@ -1,9 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600&display=swap");
-body.preload * {
-  animation-duration: 0s !important;
-  -webkit-animation-duration: 0s !important;
-}
-
 * {
   padding: 0;
   margin: 0;
@@ -278,6 +273,10 @@ html body {
   border: 5px solid white;
 }
 
+.todo-button .move-button:hover {
+  cursor: pointer;
+}
+
 .todo-button .task-done {
   background: url("/static/some_app/images/k.png");
   background-size: cover;
@@ -286,6 +285,156 @@ html body {
 .todo-button .task-notDone {
   background: url("/static/some_app/images/x.png");
   background-size: cover;
+}
+
+.todo-button .anim-yes {
+  -webkit-animation: move_no_to_yes 1s forwards;
+          animation: move_no_to_yes 1s forwards;
+}
+
+.todo-button .anim-no {
+  -webkit-animation: move_yes_to_no 1s forwards;
+          animation: move_yes_to_no 1s forwards;
+}
+
+@-webkit-keyframes move_no_to_yes {
+  0% {
+    left: 2.5rem;
+    background: url("/static/some_app/images/x.png");
+    background-size: cover;
+  }
+  40% {
+    left: -1rem;
+    background: url("/static/some_app/images/x.png");
+    background-size: cover;
+  }
+  60% {
+    z-index: 1;
+    background: url("/static/some_app/images/k.png");
+    background-size: cover;
+    left: 25.5rem;
+  }
+  61% {
+    z-index: 2;
+  }
+  100% {
+    background: url("/static/some_app/images/k.png");
+    background-size: cover;
+  }
+}
+
+@keyframes move_no_to_yes {
+  0% {
+    left: 2.5rem;
+    background: url("/static/some_app/images/x.png");
+    background-size: cover;
+  }
+  40% {
+    left: -1rem;
+    background: url("/static/some_app/images/x.png");
+    background-size: cover;
+  }
+  60% {
+    z-index: 1;
+    background: url("/static/some_app/images/k.png");
+    background-size: cover;
+    left: 25.5rem;
+  }
+  61% {
+    z-index: 2;
+  }
+  100% {
+    background: url("/static/some_app/images/k.png");
+    background-size: cover;
+  }
+}
+
+@-webkit-keyframes move_yes_to_no {
+  0% {
+    left: 2.5rem;
+    background: url("/static/some_app/images/k.png");
+    background-size: cover;
+  }
+  40% {
+    left: -1rem;
+    background: url("/static/some_app/images/k.png");
+    background-size: cover;
+  }
+  60% {
+    z-index: 1;
+    background: url("/static/some_app/images/x.png");
+    background-size: cover;
+    left: 25.5rem;
+  }
+  61% {
+    z-index: 2;
+  }
+  100% {
+    background: url("/static/some_app/images/x.png");
+    background-size: cover;
+  }
+}
+
+@keyframes move_yes_to_no {
+  0% {
+    left: 2.5rem;
+    background: url("/static/some_app/images/k.png");
+    background-size: cover;
+  }
+  40% {
+    left: -1rem;
+    background: url("/static/some_app/images/k.png");
+    background-size: cover;
+  }
+  60% {
+    z-index: 1;
+    background: url("/static/some_app/images/x.png");
+    background-size: cover;
+    left: 25.5rem;
+  }
+  61% {
+    z-index: 2;
+  }
+  100% {
+    background: url("/static/some_app/images/x.png");
+    background-size: cover;
+  }
+}
+
+.add-todo-container {
+  position: absolute;
+  height: 5rem;
+  width: 20rem;
+  right: 5rem;
+  bottom: 5rem;
+}
+
+.add-todo-container span {
+  display: block;
+  background: url("/static/some_app/images/add.png");
+  background-size: cover;
+  border-radius: 50%;
+  -webkit-box-shadow: 2px 2px 10px black;
+          box-shadow: 2px 2px 10px black;
+  height: 5rem;
+  width: 5rem;
+  color: white;
+  border: 5px solid white;
+  cursor: pointer;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.todo-label {
+  background: #04486a;
+}
+
+.todo-content {
+  background: #04486a;
+  padding: 1rem;
+  height: 4rem;
+  font-size: 1.3rem;
+  color: white;
 }
 
 .hidden {

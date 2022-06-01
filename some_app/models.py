@@ -1,4 +1,4 @@
-from django.db.models import Model, CharField, DateTimeField, EmailField, ForeignKey, RESTRICT
+from django.db.models import Model, CharField, DateTimeField, EmailField, ForeignKey, RESTRICT, CASCADE
 from django.core.validators import MinLengthValidator
 from django.contrib.auth.models import User
 
@@ -50,9 +50,9 @@ class DoneOrNot(Model):
         return self.done_or_not
 
 class ToDoList(Model):
-    user_id = ForeignKey(User, on_delete=RESTRICT)
+    user_id = ForeignKey(User, on_delete=CASCADE)
     to_do_message = CharField(max_length=80)
-    done_or_not = ForeignKey(DoneOrNot, on_delete=RESTRICT, default=2)
+    done_or_not = ForeignKey(DoneOrNot, on_delete=CASCADE, default=1)
 
-    # def __str__(self):
-    #     return self.id
+    def __str__(self):
+        return  str(self.done_or_not)

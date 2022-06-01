@@ -26,6 +26,18 @@
         </span>
     </div>
     {% endfor %}
-    </div>
+</div>
+<div class="add-todo-container">
+<form action="" method="post">
+    {% csrf_token %}
+    <label class="todo-label" for="content">
+        <input class="todo-content" type="text" id="content" name="content">
+    </label>
+    <label for="add-todo">
+        <input class="hidden" type="submit" id="add-todo" name="add-todo">
+        <span></span>
+    </label>
+</form>
+</div>
     <script type="text/javascript" src="{% static './some_app/to_do_list.js' %}"></script>
     {% endblock %}
