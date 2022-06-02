@@ -22,8 +22,9 @@ def sign_up(request):
         last_name =request.POST.dict()["last_name"]
         new_user = User.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name)
         new_user.save()
-    else:
-        pass
+        user = authenticate(request, username=username, password=password)
+        login(request, user)
+        return redirect("/")
     return render(request, "some_app/sign_up.html")
     
 

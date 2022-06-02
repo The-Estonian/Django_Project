@@ -185,27 +185,32 @@ html{
     .move-button {
       display: block;
       left: 2.5rem;
-      border: 5px solid black;
+      border: 5px solid transparent;
       border-radius: 50%;
       box-shadow: $box-shadow;
       height: 5rem;
       width: 5rem;
       z-index: 2;
       position: relative;
+      
     }
-    label input[type="submit"]:checked ~ .move-button{
-      border: 5px solid rgb(255, 255, 255);
-    }
+    // label input[type="submit"]:checked ~ .move-button{
+    //   border: 5px solid rgb(255, 255, 255);
+    // }
     .move-button:hover{
       cursor: pointer;
     }
     .task-done{
+      border: 5px solid white;
       background: url("/static/some_app/images/k.png");
       background-size: cover;
+      
     }
     .task-notDone{
+      border: 5px solid black;
       background: url("/static/some_app/images/x.png");
       background-size: cover;
+      
     }
     .anim-yes{
       animation: move_no_to_yes 1s forwards;
@@ -216,6 +221,7 @@ html{
     }
     @keyframes move_no_to_yes {
       0%{
+          border: 5px solid black;
           left: 2.5rem;
           background: url("/static/some_app/images/x.png");
           background-size: cover;
@@ -236,6 +242,7 @@ html{
         z-index: 2;
       }
       100%{
+          border: 5px solid white;
           background: url("/static/some_app/images/k.png");
           background-size: cover;
       }
@@ -243,6 +250,7 @@ html{
 
     @keyframes move_yes_to_no {
         0%{
+            border: 5px solid white;
             left: 2.5rem;
             background: url("/static/some_app/images/k.png");
             background-size: cover;
@@ -262,18 +270,24 @@ html{
           z-index: 2;
         }
         100%{
+            border: 5px solid black;
             background: url("/static/some_app/images/x.png");
             background-size: cover;
         }
     }
   }
 .add-todo-container{
-  // @include flex-row;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid black;
   position: absolute;
-  height: 5rem;
-  width: 20rem;
-  right: 5rem;
-  bottom: 5rem;
+  z-index: 4;
+  height: 12rem;
+  width: 30rem;
+  background: #04486a;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
   span{
     display: block;
     background: url("/static/some_app/images/add.png");
@@ -286,26 +300,63 @@ html{
     border: 5px solid white;
     cursor: pointer;
     margin: auto;
-    margin-top: 1rem;
+    position: relative;
+    bottom: -4rem;
   }
 }
 
 .todo-label{
   background: #04486a;
-  
-  
-  // box-shadow: $box-shadow;
-  // border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
 }
 
 .todo-content{
-  
-  background: #04486a;
-  padding: 1rem;
-  height: 4rem;
+  border: none;
+  background: #116894;
+  height: 3rem;
+  width: 20rem;
   font-size: $font;
   color: white;
+  border-radius: $border-radius;
+  padding: 1rem;
+  &:focus{
+    outline: none;
+  }
 }
+
+
+.todo-add-activator{
+  display: block;
+  background: url("/static/some_app/images/add.png");
+  background-size: cover;
+  border: 5px solid white;
+  border-radius: 50%;
+  box-shadow: $box-shadow;
+  height: 5rem;
+  width: 5rem;
+  position: absolute;
+  bottom: 5rem;
+  right: 5rem;
+  cursor: pointer;
+  &:hover{
+    border: 5px solid black;
+  }
+}
+
+
+.backdrop {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+}
+
+
 
 .hidden{
     display: none;

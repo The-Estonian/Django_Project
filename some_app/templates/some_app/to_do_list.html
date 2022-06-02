@@ -31,7 +31,7 @@
 <form action="" method="post">
     {% csrf_token %}
     <label class="todo-label" for="content">
-        <input class="todo-content" type="text" id="content" name="content">
+        <input class="todo-content" type="text" id="content" name="content" maxlength="25">
     </label>
     <label for="add-todo">
         <input class="hidden" type="submit" id="add-todo" name="add-todo">
@@ -39,5 +39,7 @@
     </label>
 </form>
 </div>
+<div class="todo-add-activator"></div>
+<div class="backdrop"></div>
     <script type="text/javascript" src="{% static './some_app/to_do_list.js' %}"></script>
     {% endblock %}

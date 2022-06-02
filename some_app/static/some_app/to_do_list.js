@@ -1,5 +1,21 @@
 console.log("To Do List is Connected");
-const allForms = document.querySelectorAll("#todoForm")
+var allForms = document.querySelectorAll("#todoForm")
+var toDoActivator = document.querySelector(".todo-add-activator")
+var backdrop = document.querySelector(".backdrop")
+var toDoContainer = document.querySelector(".add-todo-container")
+
+
+toDoActivator.addEventListener("click", function(){
+    toDoActivator.style.display = "none"
+    backdrop.style.display = "block"
+    toDoContainer.style.display = "flex"
+})
+
+backdrop.addEventListener("click", function() {
+    toDoActivator.style.display = "block"
+    backdrop.style.display = "none"
+    toDoContainer.style.display = "none"
+})
 
 for (let i = 0; i < allForms.length; i++) {
     allForms[i].addEventListener("submit", (e) => {
@@ -11,7 +27,7 @@ for (let i = 0; i < allForms.length; i++) {
         console.log(formName);
         console.log(formValue);
         console.log(formId);
-        if (formValue == "notDone") {
+        if (allForms[i].children[1].children[1].classList.contains("task-notDone")) {
             allForms[i].children[1].children[1].classList.add("anim-yes")
             allForms[i].children[1].children[1].classList.remove("task-notDone")
             setTimeout(function(){
@@ -19,7 +35,7 @@ for (let i = 0; i < allForms.length; i++) {
                 allForms[i].children[1].children[1].classList.add("task-done")
             }, 1000)
 
-        } else if (formValue == "Done") {
+        } else if (allForms[i].children[1].children[1].classList.contains("task-done")) {
             allForms[i].children[1].children[1].classList.add("anim-no")
             allForms[i].children[1].children[1].classList.remove("task-done")
             setTimeout(function(){
