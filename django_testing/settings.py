@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "some_app.apps.SomeAppConfig",
+    "TicTacToe",
+    "accounts",
 ]
 
 MIDDLEWARE = [

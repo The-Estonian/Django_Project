@@ -90,41 +90,56 @@ html{
     @include flex-row;
     position: absolute;
     right: 0.5rem;
-    top: 0;
-    span{
-        background: linear-gradient(
-          25deg,
-          rgba(255, 255, 255, 0.3),
-          rgba(0, 0, 255, 0.7)
-          );
-        text-align: center;
+    top: 0.15rem;
+    &__userAccount{
+      background: linear-gradient(25deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 255, 0.7));
+      font-size: $font;
+      box-shadow: $box-shadow;
+      border: 1px solid transparent;
+      text-align: center;
+      margin-right: 0;
+      border-radius: $border-radius 0 0 $border-radius;
+      padding: 0.9rem;
+      a{
+        text-decoration: none;
         color: white;
-        font-size: $font;
-        margin: 0.15rem;
-        padding: 0.9rem;
-        box-shadow: $box-shadow;
-        border: 1px solid transparent;
-    }
-    span:first-child{
-        margin-right: 0;
-        border-radius: $border-radius 0 0 $border-radius;
-    }
-    span:last-child{
-        border-radius: 0 $border-radius $border-radius 0;
-        margin-left: 0;
-        padding: 0.09rem;
-    }
-    span:last-child:hover{
+      }
+      &:hover{
         cursor: pointer;
         transition: 1s;
+        background: rgba(0, 0, 0, 0.5);
         border: 1px solid red;
+      }
     }
-    a img{
-        padding: 10px;
-        padding-bottom: 0;
-        height: 3rem;
+    &__logOut{
+      background: linear-gradient(25deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 255, 0.7));
+      box-shadow: $box-shadow;
+      border: 1px solid transparent;
+      border-radius: 0 $border-radius $border-radius 0;
+      margin-left: 0;
+      &:hover{
+        cursor: pointer;
+        transition: 1s;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid red;
+      }
+      span a img{
+        display: block;
+        position: relative;
+        bottom: -3px;
+        left: 2px;
+        padding: 0.6rem;
+        height: 3.55rem;
         width: auto;
+      }
     }
+
+    // a img{
+    //     padding: 10px;
+    //     padding-bottom: 0;
+    //     height: 3rem;
+    //     width: auto;
+    // }
 }
 
 .todo-container{

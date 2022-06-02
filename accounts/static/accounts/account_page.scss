@@ -1,0 +1,41 @@
+$box-shadow: 2px 2px 10px black;
+$border-radius: 0.5rem;
+$font: 1.3rem;
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.account-info{
+    @include flex-column;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
+    height: 30rem;
+    width: 20rem;
+    font-size: $font;
+    &__header{
+        position: relative;
+        top: -3rem;
+    }
+    &__container{
+        @include flex-column;
+        &__label{
+            @include flex-column;
+            input[type="submit"]{
+                width: 2rem;
+                height: 2rem;
+            }
+        }
+    }
+}
+

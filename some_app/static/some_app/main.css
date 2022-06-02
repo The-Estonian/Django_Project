@@ -126,43 +126,58 @@ html body {
           align-items: center;
   position: absolute;
   right: 0.5rem;
-  top: 0;
+  top: 0.15rem;
 }
 
-.right-corner span {
+.right-corner__userAccount {
   background: linear-gradient(25deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 255, 0.7));
-  text-align: center;
-  color: white;
   font-size: 1.3rem;
-  margin: 0.15rem;
-  padding: 0.9rem;
   -webkit-box-shadow: 2px 2px 10px black;
           box-shadow: 2px 2px 10px black;
   border: 1px solid transparent;
-}
-
-.right-corner span:first-child {
+  text-align: center;
   margin-right: 0;
   border-radius: 0.5rem 0 0 0.5rem;
+  padding: 0.9rem;
 }
 
-.right-corner span:last-child {
-  border-radius: 0 0.5rem 0.5rem 0;
-  margin-left: 0;
-  padding: 0.09rem;
+.right-corner__userAccount a {
+  text-decoration: none;
+  color: white;
 }
 
-.right-corner span:last-child:hover {
+.right-corner__userAccount:hover {
   cursor: pointer;
   -webkit-transition: 1s;
   transition: 1s;
+  background: rgba(0, 0, 0, 0.5);
   border: 1px solid red;
 }
 
-.right-corner a img {
-  padding: 10px;
-  padding-bottom: 0;
-  height: 3rem;
+.right-corner__logOut {
+  background: linear-gradient(25deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 255, 0.7));
+  -webkit-box-shadow: 2px 2px 10px black;
+          box-shadow: 2px 2px 10px black;
+  border: 1px solid transparent;
+  border-radius: 0 0.5rem 0.5rem 0;
+  margin-left: 0;
+}
+
+.right-corner__logOut:hover {
+  cursor: pointer;
+  -webkit-transition: 1s;
+  transition: 1s;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid red;
+}
+
+.right-corner__logOut span a img {
+  display: block;
+  position: relative;
+  bottom: -3px;
+  left: 2px;
+  padding: 0.6rem;
+  height: 3.55rem;
   width: auto;
 }
 

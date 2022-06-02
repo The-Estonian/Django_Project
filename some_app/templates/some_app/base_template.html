@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static './some_app/main.css' %}">
-    {% block link %}{% endblock %}
     <title>Front page</title>
   </head>
   <body>
@@ -15,18 +14,30 @@
       <a class="menu--button" href="/"><span>Main</span></a>
       <a class="menu--button" href="{% url 'tic_tac_toe' %}"><span>Tic Tac Toe</span></a>
       <a class="menu--button" href="{% url 'To-Do-List' %}"><span>To-Do</span></a>
+      {% if not user.is_authenticated %}
       <a class="menu--button" href="{% url 'sign_up' %}"><span>Sign up</span></a>
-      <a class="menu--button" href="{% url 'show_data' %}"><span>Show users</span></a>
       <a class="menu--button" href="{% url 'login_page' %}"><span>Login</span></a>
+      {% endif %}
+      {% if user.is_superuser %}
+      <a class="menu--button" href="{% url 'show_data' %}"><span>Show users</span></a>
+      {% endif %}
       {% if user.is_authenticated %}
       <div class="right-corner">
-        <span>{{user.username}}</span>
-        <span><a href="{% url 'log_out' %}"><img src="{% static 'some_app/images/log_out.png' %}" alt="log out"></a></span>
+        <div class="right-corner__userAccount">
+          <a href="{% url 'user_accounts' %}"><span>{{user.username}}</span></a>
         </div>
+        <div class="right-corner__logOut">
+          <span><a href="{% url 'log_out' %}"><img src="{% static 'some_app/images/log_out.png' %}" alt="log out"></a></span>
+        </div>
+      </div>
       {% else %}
       <div class="right-corner">
+        <div class="right-corner__userAccount">
         <span>Guest</span>
+      </div>
+      <div class="right-corner__logOut">
         <span><a href="{% url 'log_out' %}"><img src="{% static 'some_app/images/log_out.png' %}" alt="log out"></a></span>
+      </div>
       </div>
       {% endif %}
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import ToDoList, DoneOrNot
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
@@ -10,6 +10,9 @@ def base_template(request):
 
 
 def index(request):
+    user = User.objects.get(id=2)
+    permissions = user.get_all_permissions()
+    # print(user.check_password("Asd12"))
     return render(request, "some_app/index.html")
 
 
@@ -27,7 +30,7 @@ def sign_up(request):
         return redirect("/")
     return render(request, "some_app/sign_up.html")
     
-
+@login_required(login_url="login_page")
 def show_data(request):
     if request.method == "POST":
         id_to_delete = request.POST.dict()["id_to_delete"]
@@ -36,8 +39,7 @@ def show_data(request):
     context = {"all_users":all_users}
     return render(request, "some_app/show_data.html", context)
 
-def tic_tac_toe(request):
-    return render(request, "some_app/tic_tac_toe.html")
+
     
 
 def login_page(request):
@@ -50,7 +52,7 @@ def login_page(request):
             if "next" in request.GET.dict():
                 return redirect(request.GET.dict()["next"])
             else:
-                return render(request, "some_app/login_page.html")
+                return redirect("/")
         else:
             context = {"password":"Username or Password incorrect! "}
             return render(request, "some_app/login_page.html", context)

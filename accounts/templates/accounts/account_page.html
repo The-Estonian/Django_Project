@@ -1,0 +1,37 @@
+{% extends "some_app/base_template.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static './accounts/account_page.css' %}" />
+<div class="account-info">
+<span class="account-info__header">Account page!</span> 
+    <form class="account-info__container" action="" method="post">
+        {% if current_user %}
+            {% for value in current_user %}
+                <label class="account-info__container__label" for="{{value.id}}">
+                    <span>{{value.id}}</span>
+                    <input type="submit" id="{{value.id}}" value="">
+                </label>
+                <label class="account-info__container__label for="{{value.username}}">
+                    <span>{{value.username}}</span>
+                    <input type="submit" id="{{value.username}}" value="">
+                </label>
+                <label class="account-info__container__label for="{{value.first_name}}">
+                    <span>{{value.first_name}}</span>
+                    <input type="submit" id="{{value.first_name}}" value="">
+                </label>
+                <label class="account-info__container__label for="{{value.last_name}}">
+                    <span>{{value.last_name}}</span>
+                    <input type="submit" id="{{value.last_name}}" value="">
+                </label>
+                <label class="account-info__container__label for="{{value.email}}">
+                    <span>{{value.email}}</span>
+                    <input type="submit" id="{{value.email}}" value="">
+                </label>
+            {% endfor %}
+        {% endif %}
+    </form>
+</div>
+{% endblock %}
+
+
