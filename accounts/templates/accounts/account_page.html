@@ -1,37 +1,101 @@
-{% extends "some_app/base_template.html" %}
-{% load static %}
-
+{% extends "some_app/base_template.html" %} 
+{% load static %} 
 {% block content %}
 <link rel="stylesheet" href="{% static './accounts/account_page.css' %}" />
 <div class="account-info">
-<span class="account-info__header">Account page!</span> 
-    <form class="account-info__container" action="" method="post">
-        {% if current_user %}
-            {% for value in current_user %}
-                <label class="account-info__container__label" for="{{value.id}}">
-                    <span>{{value.id}}</span>
-                    <input type="submit" id="{{value.id}}" value="">
-                </label>
-                <label class="account-info__container__label for="{{value.username}}">
-                    <span>{{value.username}}</span>
-                    <input type="submit" id="{{value.username}}" value="">
-                </label>
-                <label class="account-info__container__label for="{{value.first_name}}">
-                    <span>{{value.first_name}}</span>
-                    <input type="submit" id="{{value.first_name}}" value="">
-                </label>
-                <label class="account-info__container__label for="{{value.last_name}}">
-                    <span>{{value.last_name}}</span>
-                    <input type="submit" id="{{value.last_name}}" value="">
-                </label>
-                <label class="account-info__container__label for="{{value.email}}">
-                    <span>{{value.email}}</span>
-                    <input type="submit" id="{{value.email}}" value="">
-                </label>
-            {% endfor %}
-        {% endif %}
-    </form>
+  <span class="account-info__header">Account page!</span>
+  <div class="account-info__container" action="" method="post">
+    
+    {% if current_user %} {% for value in current_user %}
+    <div class="account-info__container__labels">
+
+        <span class="account-info__container__labels__label">Username</span>
+        <span class="account-info__container__labels__value">{{value.username}}</span>
+
+        <span class="account-info__container__labels__label">Password</span>
+        <span class="account-info__container__labels__value">Encrypted!</span>
+
+        <span class="account-info__container__labels__label">Email</span>
+        <span class="account-info__container__labels__value">{{value.email}}</span>
+
+        <span class="account-info__container__labels__label">First name</span>
+        <span class="account-info__container__labels__value">{{value.first_name}}</span>
+
+        <span class="account-info__container__labels__label">Last name</span>
+        <span class="account-info__container__labels__value">{{value.last_name}}</span>
+    </div>
+    <div class="account-info__container__submits">
+        <span id="username"><img src="{% static 'some_app/images/edit.png' %}" alt=""></span>
+        <span id="password"><img src="{% static 'some_app/images/edit.png' %}" alt=""></span>
+        <span id="email"><img src="{% static 'some_app/images/edit.png' %}" alt=""></span>
+        <span id="first-name"><img src="{% static 'some_app/images/edit.png' %}" alt=""></span>
+        <span id="last-name"><img src="{% static 'some_app/images/edit.png' %}" alt=""></span>
+    </div>
+    {% endfor %} {% endif %}
 </div>
+</div>
+<div class="backdrop"></div>
+<form action="" method="post">
+{% csrf_token %}
+<div class="username-change">
+    <span class="username-change__title">Please enter a new username: </span>
+    <label class="username-change__label" for="username">
+        <input class="username-change__label__input" type="text" name="username">
+    </label>
+        <div class="username-change__label__choices">
+            <input class="username-change__label__choices__accept" type="submit" id="username" value="Accept" />
+            <span class="change__label__choices__cancel">Cancel</span>
+        </div>
+</div>
+<div class="password-change">
+    <span class="password-change__title">Please enter your Old password: </span>
+    <label class="password-change__label" for="old-password">
+        <input class="password-change__label__input" type="text" name="old-password">
+    </label>
+    <span class="password-change__title">Please enter a New password: </span>
+    <label class="password-change__label" for="new-password">
+        <input class="password-change__label__input" type="text" name="new-password">
+    </label>
+    <span class="password-change__title">Please repeat your new password: </span>
+    <label class="password-change__label" for="new2-password">
+        <input class="password-change__label__input" type="text" name="new2-password">
+    </label>
+        <div class="password-change__label__choices">
+            <input class="password-change__label__choices__accept" type="submit" id="password" value="Accept" />
+            <span class="change__label__choices__cancel">Cancel</span>
+        </div>
+</div>
+<div class="email-change">
+    <span class="email-change__title">Please enter a new Email: </span>
+    <label class="email-change__label" for="email">
+        <input class="email-change__label__input" type="text" name="email">
+    </label>
+        <div class="email-change__label__choices">
+            <input class="email-change__label__choices__accept" type="submit" id="email" value="Accept" />
+            <span class="change__label__choices__cancel">Cancel</span>
+        </div>
+</div>
+<div class="first-name-change">
+    <span class="first-name-change__title">Please enter a new First name: </span>
+    <label class="first-name-change__label" for="first-name">
+        <input class="first-name-change__label__input" type="text" name="first-name">
+    </label>
+        <div class="first-name-change__label__choices">
+            <input class="first-name-change__label__choices__accept" type="submit" id="first-name" value="Accept" />
+            <span class="change__label__choices__cancel">Cancel</span>
+        </div>
+</div>
+<div class="last-name-change">
+    <span class="last-name-change__title">Please enter a new Last name: </span>
+    <label class="last-name-change__label" for="last-name">
+        <input class="last-name-change__label__input" type="text" name="last-name">
+    </label>
+        <div class="last-name-change__label__choices">
+            <input class="last-name-change__label__choices__accept" type="submit" id="last-name" value="Accept" />
+            <span class="change__label__choices__cancel">Cancel</span>
+        </div>
+</div>
+
+</form>
+<script src="{% static './accounts/account_page.js' %}"></script>
 {% endblock %}
-
-
