@@ -1,5 +1,6 @@
 from django.db.models import Model, CharField, DateTimeField, EmailField, ForeignKey, RESTRICT, CASCADE
-from django.core.validators import MinLengthValidator
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -43,6 +44,7 @@ from django.contrib.auth.models import User
 #     class Meta:
 #         unique_together = (("grid_choice1", "grid_choice2"),)
 
+
 class DoneOrNot(Model):
     done_or_not = CharField(max_length=50)
 
@@ -51,8 +53,18 @@ class DoneOrNot(Model):
 
 class ToDoList(Model):
     user_id = ForeignKey(User, on_delete=CASCADE)
-    to_do_message = CharField(max_length=80)
+    to_do_message = CharField(max_length=20)
     done_or_not = ForeignKey(DoneOrNot, on_delete=CASCADE, default=1)
+
+    def clean(self):
+        if len(self.to_do_message) > 15:
+            raise ValidationError(
+                _("15 letters per todo please!"),
+                params={"value":self.to_do_message},
+            )
 
     def __str__(self):
         return  str(self.done_or_not)
+
+
+

@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{% static './accounts/account_page.css' %}" />
 <div class="account-info">
   <span class="account-info__header">Account page!</span>
-  <div class="account-info__container" action="" method="post">
+  <div class="account-info__container">
     
     {% if current_user %} {% for value in current_user %}
     <div class="account-info__container__labels">
@@ -35,7 +35,7 @@
 </div>
 </div>
 <div class="backdrop"></div>
-<form action="" method="post">
+<form class="account-form" action="" method="post">
 {% csrf_token %}
 <div class="username-change">
     <span class="username-change__title">Please enter a new username: </span>
@@ -50,15 +50,15 @@
 <div class="password-change">
     <span class="password-change__title">Please enter your Old password: </span>
     <label class="password-change__label" for="old-password">
-        <input class="password-change__label__input" type="text" name="old-password">
+        <input class="password-change__label__input" type="password" name="old-password">
     </label>
     <span class="password-change__title">Please enter a New password: </span>
     <label class="password-change__label" for="new-password">
-        <input class="password-change__label__input" type="text" name="new-password">
+        <input class="password-change__label__input" type="password" name="new-password">
     </label>
     <span class="password-change__title">Please repeat your new password: </span>
     <label class="password-change__label" for="new2-password">
-        <input class="password-change__label__input" type="text" name="new2-password">
+        <input class="password-change__label__input" type="password" name="new2-password">
     </label>
         <div class="password-change__label__choices">
             <input class="password-change__label__choices__accept" type="submit" id="password" value="Accept" />
@@ -68,7 +68,7 @@
 <div class="email-change">
     <span class="email-change__title">Please enter a new Email: </span>
     <label class="email-change__label" for="email">
-        <input class="email-change__label__input" type="text" name="email">
+        <input class="email-change__label__input" type="email" name="email">
     </label>
         <div class="email-change__label__choices">
             <input class="email-change__label__choices__accept" type="submit" id="email" value="Accept" />

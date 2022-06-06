@@ -26,16 +26,23 @@
         </span>
     </div>
     {% endfor %}
+    {% if errors %}
+    {% for error in errors %}
+    <span class="add-todo-container__title">{{error}}</span>
+    {% endfor %}
+    {% endif %}
 </div>
 <div class="add-todo-container">
+    <span class="add-todo-container__title">Add a To-Do into the list:</span>
+    
 <form action="" method="post">
     {% csrf_token %}
-    <label class="todo-label" for="content">
-        <input class="todo-content" type="text" id="content" name="content" maxlength="25">
+    <label class="add-todo-container__label" for="content">
+        <input class="add-todo-container__label__content" type="text" id="content" name="content" maxlength="25">
     </label>
     <label for="add-todo">
         <input class="hidden" type="submit" id="add-todo" name="add-todo">
-        <span></span>
+        <span class="add-todo-container__add__pic"></span>
     </label>
 </form>
 </div>

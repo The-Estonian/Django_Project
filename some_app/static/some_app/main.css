@@ -423,13 +423,20 @@ html body {
 }
 
 .add-todo-container {
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  display: none;
   border: 5px solid black;
   position: absolute;
   z-index: 4;
@@ -441,7 +448,13 @@ html body {
   border-radius: 0.5rem;
 }
 
-.add-todo-container span {
+.add-todo-container__title {
+  color: white;
+  font-size: 1.3rem;
+  padding: 0.5rem;
+}
+
+.add-todo-container__add__pic {
   display: block;
   background: url("/static/some_app/images/add.png");
   background-size: cover;
@@ -458,14 +471,14 @@ html body {
   bottom: -4rem;
 }
 
-.todo-label {
+.add-todo-container__label {
   background: #04486a;
   -webkit-box-shadow: 2px 2px 10px black;
           box-shadow: 2px 2px 10px black;
   border-radius: 0.5rem;
 }
 
-.todo-content {
+.add-todo-container__label__content {
   border: none;
   background: #116894;
   height: 3rem;
@@ -476,7 +489,7 @@ html body {
   padding: 1rem;
 }
 
-.todo-content:focus {
+.add-todo-container__label__content:focus {
   outline: none;
 }
 

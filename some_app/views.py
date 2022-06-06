@@ -3,15 +3,19 @@ from .models import ToDoList, DoneOrNot
 from django.contrib.auth.models import User, Permission
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.core.exceptions import NON_FIELD_ERRORS, ValidationError
 # Create your views here.
 
-def base_template(request):
-    return render(request, "some_app/base_template.html")
+# def base_template(request):
+#     current_user_id = request.user.id
+#     current_user = User.objects.filter(id = current_user_id).values()
+#     context = {"current_user":current_user}
+#     return render(request, "accounts/account_page.html", context)
 
 
 def index(request):
-    user = User.objects.get(id=2)
-    permissions = user.get_all_permissions()
+    # user = User.objects.get(id=2)
+    # permissions = user.get_all_permissions()
     # print(user.check_password("Asd12"))
     return render(request, "some_app/index.html")
 
@@ -90,15 +94,26 @@ def to_do_list(request):
                 print(f"Task {datastream}, ({current_value.to_do_message}) updated to Done!")
             return render(request, "some_app/to_do_list.html", context)
         elif "add-todo" in request.POST.dict():
-            print(request.POST.dict()["content"])
+            # print(request.POST.dict()["content"])
             content = request.POST.dict()["content"]
             db_connection = ToDoList(user_id=user_instance, to_do_message=content, done_or_not=task_not_done)
+            try:
+                db_connection.full_clean()
+            except ValidationError as e:
+                print("Error!")
+                errors = e.message_dict["to_do_message"]
+                print(errors)
+                context.update({"errors" : errors})
+                return render(request, "some_app/to_do_list.html", context)
             db_connection.save()
             return render(request, "some_app/to_do_list.html", context)
         else:
             return render(request, "some_app/to_do_list.html", context)
     else:
         return render(request, "some_app/to_do_list.html", context)
+
+
+
 
 # 'done_or_not': '22, False'}
 

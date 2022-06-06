@@ -1,8 +1,8 @@
 console.log("To Do List is Connected");
-var allForms = document.querySelectorAll("#todoForm")
-var toDoActivator = document.querySelector(".todo-add-activator")
-var backdrop = document.querySelector(".backdrop")
-var toDoContainer = document.querySelector(".add-todo-container")
+const allForms = document.querySelectorAll("#todoForm")
+const toDoActivator = document.querySelector(".todo-add-activator")
+const backdrop = document.querySelector(".backdrop")
+const toDoContainer = document.querySelector(".add-todo-container")
 
 
 toDoActivator.addEventListener("click", function(){

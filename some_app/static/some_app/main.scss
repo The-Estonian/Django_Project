@@ -292,9 +292,8 @@ html{
     }
   }
 .add-todo-container{
+  @include flex-column;
   display: none;
-  justify-content: center;
-  align-items: center;
   border: 5px solid black;
   position: absolute;
   z-index: 4;
@@ -303,40 +302,45 @@ html{
   background: #04486a;
   box-shadow: $box-shadow;
   border-radius: $border-radius;
-  span{
-    display: block;
-    background: url("/static/some_app/images/add.png");
-    background-size: cover;
-    border-radius: 50%;
-    box-shadow: $box-shadow;
-    height: 5rem;
-    width: 5rem;
+  &__title{
     color: white;
-    border: 5px solid white;
-    cursor: pointer;
-    margin: auto;
-    position: relative;
-    bottom: -4rem;
+    font-size: $font;
+    padding: 0.5rem;
   }
-}
-
-.todo-label{
-  background: #04486a;
-  box-shadow: $box-shadow;
-  border-radius: $border-radius;
-}
-
-.todo-content{
-  border: none;
-  background: #116894;
-  height: 3rem;
-  width: 20rem;
-  font-size: $font;
-  color: white;
-  border-radius: $border-radius;
-  padding: 1rem;
-  &:focus{
-    outline: none;
+  &__add{
+    &__pic{
+      display: block;
+      background: url("/static/some_app/images/add.png");
+      background-size: cover;
+      border-radius: 50%;
+      box-shadow: $box-shadow;
+      height: 5rem;
+      width: 5rem;
+      color: white;
+      border: 5px solid white;
+      cursor: pointer;
+      margin: auto;
+      position: relative;
+      bottom: -4rem;
+    }
+  }
+  &__label{
+    background: #04486a;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
+    &__content{
+      border: none;
+      background: #116894;
+      height: 3rem;
+      width: 20rem;
+      font-size: $font;
+      color: white;
+      border-radius: $border-radius;
+      padding: 1rem;
+      &:focus{
+        outline: none;
+      }
+    }
   }
 }
 

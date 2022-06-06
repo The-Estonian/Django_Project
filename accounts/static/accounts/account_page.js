@@ -19,6 +19,8 @@ const firstNameTrigger = document.querySelector("#first-name")
 const lastName = document.querySelector(".last-name-change")
 const lastNameTrigger = document.querySelector("#last-name")
 
+const formRefresh = document.querySelector(".account-form")
+
 usernameTrigger.addEventListener("click", function() {
     backdrop.style.display = "block"
     username.style.display = "block"
@@ -61,7 +63,10 @@ for (let i = 0; i < cancelButton.length; i++) {
     })
 }
 
+// formRefresh.addEventListener("submit", function() {
 
+//     location.reload();
+// })
 
 backdrop.addEventListener("click", function() {
     backdrop.style.display = ""
