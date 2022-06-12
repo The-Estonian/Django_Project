@@ -15,6 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+import random
+from string import ascii_letters
+
+def randomizer():
+    letter_list = list(ascii_letters )
+    num_list = list(range(10))
+    randomizer_range = letter_list + num_list
+    returned_list = []
+    for _ in range(30):
+        x = str(random.choice(randomizer_range))
+        returned_list.append(x)
+    returned_list.append("/")
+    return "".join(returned_list)
+    
 
 urlpatterns = [
     path('admin/', admin.site.urls),

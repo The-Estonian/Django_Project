@@ -23,12 +23,20 @@
         </div>
       </div>
       {%if instance.id != 1 %}
+      <div class="options">
       <form action="" method="POST">
         {% csrf_token %}
         <label class="hidden" for="id_to_delete"></label>
         <input class="hidden" value={{instance.id}} type="text" name="id_to_delete">
         <input type="submit" class="account-container__button" value="Delete record" />
       </form>
+      <form action="" method="POST">
+        {% csrf_token %}
+        <label class="hidden" for="give_perm"></label>
+        <input class="hidden" value={{instance.id}} type="text" name="give_perm">
+        <input type="submit" class="account-container__button" value="Give Perm" />
+      </form>
+    </div>
       {% else %}
       <form action="" method="POST">
         {% csrf_token %}

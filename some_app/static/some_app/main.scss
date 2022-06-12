@@ -527,4 +527,7 @@ html{
           pointer-events: none;
           }
         }
+  .options{
+    @include flex-row;
+  }
   }

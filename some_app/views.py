@@ -1,22 +1,13 @@
 from django.shortcuts import render, redirect
 from .models import ToDoList, DoneOrNot
 from django.contrib.auth.models import User, Permission
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import NON_FIELD_ERRORS, ValidationError
-# Create your views here.
-
-# def base_template(request):
-#     current_user_id = request.user.id
-#     current_user = User.objects.filter(id = current_user_id).values()
-#     context = {"current_user":current_user}
-#     return render(request, "accounts/account_page.html", context)
 
 
 def index(request):
-    # user = User.objects.get(id=2)
-    # permissions = user.get_all_permissions()
-    # print(user.check_password("Asd12"))
     return render(request, "some_app/index.html")
 
 
@@ -34,6 +25,7 @@ def sign_up(request):
         return redirect("/")
     return render(request, "some_app/sign_up.html")
     
+
 @login_required(login_url="login_page")
 def show_data(request):
     if request.method == "POST":
@@ -43,9 +35,7 @@ def show_data(request):
     context = {"all_users":all_users}
     return render(request, "some_app/show_data.html", context)
 
-
     
-
 def login_page(request):
     if request.method == "POST":
         username = request.POST.dict()["username"]
@@ -68,7 +58,9 @@ def log_out(request):
     logout(request)
     return render(request, "some_app/index.html")
 
+
 @login_required(login_url="login_page")
+# @permission_required("")
 def to_do_list(request):
     to_do_user = request.user.id
     to_do_list = ToDoList.objects.filter(user_id=to_do_user)
@@ -96,15 +88,13 @@ def to_do_list(request):
         elif "add-todo" in request.POST.dict():
             # print(request.POST.dict()["content"])
             content = request.POST.dict()["content"]
-            db_connection = ToDoList(user_id=user_instance, to_do_message=content, done_or_not=task_not_done)
             try:
-                db_connection.full_clean()
+                db_connection = ToDoList(user_id=user_instance, to_do_message=content, done_or_not=task_not_done)
             except ValidationError as e:
-                print("Error!")
-                errors = e.message_dict["to_do_message"]
-                print(errors)
-                context.update({"errors" : errors})
-                return render(request, "some_app/to_do_list.html", context)
+                print("Raised error", e.message)
+                error = {"ToDo-Error": e}
+                context.update(error)
+            print("Saving Instance")
             db_connection.save()
             return render(request, "some_app/to_do_list.html", context)
         else:
@@ -112,30 +102,3 @@ def to_do_list(request):
     else:
         return render(request, "some_app/to_do_list.html", context)
 
-
-
-
-# 'done_or_not': '22, False'}
-
-    # def login_page(request):
-    #     if request.method == "POST":
-    #         username = request.POST.dict()["username"]
-    #         password = request.POST.dict()["password"]
-    #         user = SignUp.objects.filter(username=username).values()
-    #         if user[0]["password"] == password:
-    #             SiteTemplate.context["login"] = user[0]["username"]
-    #     return render(request, "some_app/login_page.html", SiteTemplate.context)
-
-    # def login_page(request):
-    #     if request.method == "POST":
-    #         username = request.POST.dict()["username"]
-    #         password = request.POST.dict()["password"]
-    #         email = request.POST.dict()["email"]
-    #         first_name = request.POST.dict()["first_name"]
-    #         last_name =request.POST.dict()["last_name"]
-    #         new_sign = SignUp(username=username, password=password, email=email, first_name=first_name, last_name=last_name)
-    #         new_sign.save()
-    #     else:
-    #         pass
-        
-    #     return render(request, "some_app/sign_up.html", SiteTemplate.context)
